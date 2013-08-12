@@ -15,6 +15,7 @@ block body
           | Welcome text
         div(ng-controller="MainCtrl")
           | {{message}}
+          div(ng-click="send()") send
 
   section(id="content", class="container")
     div(ng-view)
@@ -22,7 +23,9 @@ block body
     // loading scripts
     //if inProduction
     // libs
+  script(src='app-src/lib/bower/socket.io-client/dist/socket.io.js')
   script(src='app-src/lib/bower/angular/angular.js')
+  script(src='app-src/lib/bower/angular-socket-io/socket.js')
   script(src='app-src/lib/bower/jquery/jquery.js')
   script(src='app-src/lib/bower/lodash/lodash.js')
   //services

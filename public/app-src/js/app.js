@@ -10,7 +10,10 @@
       'controller.profile',
 
       // service
-      'service.rest'
+      'service.rest',
+
+      // 3rd parties
+      'btford.socket-io'
   ]);
 
 

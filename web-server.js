@@ -3,10 +3,10 @@
  */
 
 var express = require('express');
-var http = require('http');
 var path = require('path');
-
 var app = module.exports = express();
+var server = require('http').createServer(app);
+var io = require('socket.io').listen(server);
 
 
 /**
@@ -48,6 +48,20 @@ app.get('*', function (req, res) {
 });
 
 
-http.createServer(app).listen(app.get('port'), function () {
+var socketUser = {username: 'horst'};
+
+io.sockets.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
+
+  socket.on('counter.start', function(data) {
+//    socket.broadcast.emit("asdf", {hello: 'broadcast'});
+    io.sockets.emit("horst", { hello: 'asdkasldk' });
+  });
+});
+
+server.listen(app.get('port'), function () {
   console.log('Express server listening on port ' + app.get('port'));
 });
